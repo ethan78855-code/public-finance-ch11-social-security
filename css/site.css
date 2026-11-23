@@ -1,0 +1,66 @@
+/* ==========================================================================
+   site.css — 本站專用的小補充（主要設計系統在 style.css，由 Fable 設計）
+   ========================================================================== */
+
+/* hidden 屬性一律生效（.control 等元件有 display:grid） */
+[hidden] { display: none !important; }
+
+/* 特殊圖框比例 */
+.chart--flow { aspect-ratio: 4 / 3; min-height: 260px; }
+.chart--bars { min-height: 260px; }
+.chart--strip { aspect-ratio: auto; height: 120px; min-height: 0; }
+@media (min-width: 640px) {
+  .chart--flow { aspect-ratio: 5 / 2; }
+  .chart--strip { aspect-ratio: auto; height: 120px; }
+}
+
+/* 長條內的反白字 */
+.chart svg .bar-label-inv { fill: var(--chart-bg); font-weight: 700; }
+
+/* hover / focus 回饋 */
+.chart svg .bar.is-hover, .chart svg path.bar.is-hover { opacity: 0.82 !important; }
+.chart svg .dot.is-hover, .chart svg .person.is-hover { stroke: var(--chart-text-strong); stroke-width: 2.5; }
+.chart svg [tabindex]:focus { outline: none; }
+.chart svg [tabindex]:focus-visible { outline: 2px solid var(--focus, var(--accent)); outline-offset: 2px; }
+.chart svg .axis--cat text { font-family: var(--font-sans); font-size: 12px; fill: var(--chart-text-strong); }
+
+/* 圖卡內的小標題 */
+.figure__panel .panel-title { margin-bottom: calc(var(--s-2) * -1); }
+
+/* 讓 readout 的文字型數值（例如「平衡 ✓」）不會太大 */
+.readout__value.is-text { font-family: "Noto Sans TC", var(--font-sans); font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.625rem); font-weight: 700; }
+
+/* 改革工具箱：開啟的工具加底色 */
+.lever.is-on { background: color-mix(in srgb, var(--accent-soft) 55%, transparent); margin-inline: calc(var(--s-2) * -1); padding-inline: var(--s-2); }
+
+/* 象形圖放在圖卡中 */
+.figure .picto { min-height: 48px; }
+
+/* 民營化流程 */
+.steps { counter-reset: st; display: grid; gap: var(--s-3); margin: 0; padding: 0; list-style: none; }
+@media (min-width: 760px) { .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.steps > li { counter-increment: st; position: relative; margin: 0; padding: var(--s-3) var(--s-4) var(--s-4); background: var(--surface); border: 1px solid var(--rule); border-top: 3px solid var(--rule-strong); }
+.steps > li::before { content: counter(st, decimal-leading-zero); display: block; font-family: var(--font-num); font-size: 1.5rem; font-weight: 600; line-height: 1.2; color: var(--accent); }
+.steps b { display: block; margin-top: 2px; font-family: "Noto Serif TC", var(--font-serif); font-size: 1.0625rem; }
+.steps p { margin-top: var(--s-1); font-size: var(--fs-small); line-height: 1.7; color: var(--ink-2); }
+
+/* 國家標籤 */
+.tags { display: flex; flex-wrap: wrap; gap: var(--s-2); margin: 0; padding: 0; list-style: none; }
+.tags > li { margin: 0; padding: 4px 12px; border: 1px solid var(--ink-3); border-radius: 999px; font-size: var(--fs-small); color: var(--ink-2); }
+
+/* 章節路線圖 */
+.roadmap { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; border-top: 2px solid var(--rule-strong); }
+@media (min-width: 760px) { .roadmap { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--s-6); } }
+.roadmap > li { margin: 0; border-bottom: 1px solid var(--rule); }
+.roadmap a { display: grid; grid-template-columns: 2.75rem minmax(0, 1fr); gap: var(--s-2); align-items: baseline; padding: var(--s-3) 0; color: var(--ink); text-decoration: none; }
+.roadmap a:hover .roadmap__title { color: var(--accent-strong); }
+.roadmap__num { font-family: var(--font-mono); font-size: var(--fs-micro); font-weight: 600; color: var(--accent-strong); letter-spacing: 0.08em; }
+.roadmap__title { font-weight: 700; transition: color var(--dur-1) var(--ease); }
+.roadmap__desc { display: block; font-size: var(--fs-small); line-height: 1.6; color: var(--ink-3); font-weight: 400; }
+
+/* 圖卡內的公式不要太大 */
+.figure .formula__eq { font-size: clamp(1.0625rem, 0.95rem + 0.6vw, 1.375rem); }
+
+/* 放大版象形圖 */
+.picto--lg { zoom: 1.5; }
+@media (max-width: 639px) { .picto--lg { zoom: 1.25; } }
